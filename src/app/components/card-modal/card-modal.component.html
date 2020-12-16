@@ -1,0 +1,41 @@
+<div class="modal" #modal [ngClass]="{'is-active': isOpen}">
+  <div class="modal-background"></div>
+  <form class="modal-card" [formGroup]="taskForm" (ngSubmit)="onSubmit(taskForm.value)">
+    <header class="modal-card-head">
+      <div class="title-wrapper is-flex">
+        <label for="task-title">Название</label>
+        <input class="input is-info" id="task-title" formControlName="title"/>
+      </div>
+      <button class="delete close-btn" aria-label="close" (click)="close()" type="button"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="description-wrapper">
+        <label for="task-description">Описание</label>
+        <textarea class="textarea is-info" id="task-description" formControlName="description"></textarea>
+      </div>
+      <div class="control importancy">
+        <p>Важность</p>
+        <label class="radio">
+          <input type="radio" [value]="importanceRates.low" name="importance" formControlName="importance"/>
+          {{importanceRates.low}}
+        </label>
+        <label class="radio">
+          <input type="radio" [value]="importanceRates.medium" name="importance" formControlName="importance"/>
+          {{importanceRates.medium}}
+        </label>
+        <label class="radio">
+          <input type="radio" [value]="importanceRates.high" name="importance" formControlName="importance"/>
+          {{importanceRates.high}}
+        </label>
+      </div>
+      <div class="deadline-wrapper is-flex">
+        <label class="deadline-label" for="deadline">Дата</label>
+        <input type="date" id="deadline" color="primary" formControlName="date"/>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" type="submit">Save changes</button>
+      <button class="button" type="button">Cancel</button>
+    </footer>
+  </form>
+</div>

@@ -1,0 +1,26 @@
+<div class="board">
+  <div class="board-bar">
+    <p class="board-name">{{ model.name }}</p>
+  </div>
+  <div class="board-wrapper">
+    <div class="board-columns" cdkDropListGroup>
+      <div class="board-column" *ngFor="let column of model.columns | async">
+        <div class="column-title-wrapper is-flex">
+          <div class="column-title">{{ column.name }}</div>
+          <button class="add-btn" (click)="openModal($event)" [attr.name]="column.name"></button>
+        </div>
+        <div
+          class="tasks-container"
+          cdkDropList
+          [cdkDropListData]="column.tasks"
+          (cdkDropListDropped)="drop($event)"
+          [attr.name]="column.name"
+        >
+          <div class="task" *ngFor="let item of column.tasks" cdkDrag>
+            <app-card [data]="item"></app-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
